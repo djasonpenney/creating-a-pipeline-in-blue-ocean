@@ -13,9 +13,6 @@ pipeline {
       }
     }
     stage('Test') {
-      environment {
-        CI = 'true'
-      }
       steps {
         sh './jenkins/scripts/test.sh '
       }
@@ -30,10 +27,13 @@ pipeline {
         input 'Finished using the web site? (Click "Proceed" to continue)'
       }
     }
-    stage('') {
+    stage('error') {
       steps {
         sh './jenkins/scripts/kill.sh'
       }
     }
+  }
+  environment {
+    CI = 'true'
   }
 }
